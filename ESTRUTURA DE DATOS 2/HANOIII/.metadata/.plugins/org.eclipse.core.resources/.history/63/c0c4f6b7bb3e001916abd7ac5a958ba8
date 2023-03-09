@@ -1,0 +1,188 @@
+function* algorithm() {
+
+    // the number of disks we are going to demonstrate the algorithm with
+    var kN = 5;
+    // the bounds of the surface
+    var kB = algo.BOUNDS.inflate(-4, -4);
+    // create a grid layout that will define the bounds of each of the three towers
+    var outer = new algo.layout.GridLayout(kB, 1, 3);
+    // create a layout for each tower. The numbers of rows is kN + 3 to accommodate the base of the tower and room
+    // to slide disks off the top of the tower.
+    // Each tower is kW cells wide so we can easily select the center column for the tower body ( must be an odd number)
+    var kW = 29,
+        kC = kW >> 1;
+    var t = [
+        new algo.layout.GridLayout(outer.getBox(0, 0).inflate(-10, -10), kN + 3, kW),
+        new algo.layout.GridLayout(outer.getBox(0, 1).inflate(-10, -10), kN + 3, kW),
+        new algo.layout.GridLayout(outer.getBox(0, 2).inflate(-10, -10), kN + 3, kW),
+    ];
+
+    // the towers each represented by bit flags. This is useful when we have a source
+    // and destination and want to know the other/helper tower ... we can simple XOR
+    // the flags with %111 because for example (kLEFT | KRIGHT) ^ %111 === kMIDDLE.
+
+    var kLEFT = 1,
+        kMIDDLE = 2,
+        kRIGHT = 4,
+        kALL = kLEFT | kMIDDLE | kRIGHT;
+
+    // towers are represented by stacks containing the disks. We can move
+    // disks from one to the other by simple pop / push pairs
+    // If you have one of kLEFT, kMIDDLE, kRIGHT then simple shift right ( /2 ) to find the index
+    // of the tower
+
+    var towers = [
+        [], // left
+        [], // middle
+        [] // right
+    ];
+
+    // setup display and prepare data structures for solving
+    setup();
+
+    //=show initial configuration
+    yield ({
+        step: _.sprintf("The starting configuration of %d disks on 3 towers.", kN),
+        line: "show"
+    });
+
+    // recursive Hanoi solver.
+
+    // NOTE: Because we want to yield from within the moveDisk and recursive
+    // calls to hanoi we must use the yield * syntax to invoke those functions
+    // otherwise they won't be treated as part of a generator function
+
+    function* hanoi(nDisks, fromTower, toTower) {
+
+        // case of 1 disk is trivial
+        if (nDisks === 1) {
+            yield * moveDisk(fromTower, toTower);
+        } else {
+
+            // figure out the helper tower
+            var helpTower = (fromTower | toTower) ^ kALL;
+
+            // 3 moves are necessary
+
+            yield * hanoi(nDisks - 1, fromTower, helpTower);
+
+            yield * moveDisk(fromTower, toTower);
+
+            yield * hanoi(nDisks - 1, helpTower, toTower);
+        }
+    }
+
+    // core function of the algorithm is the moving of a single disk from one tower to another.
+    // Since we wish to show the animation of each disk this function is a generator so it can be
+    // called and yield from within another generator.
+    //=moveDisk
+    function* moveDisk(from, to) {
+
+        // get the disk to move by poping the stack that represents that tower
+        var disk = towers[from >> 1].pop();
+
+        // get source location of disk
+        var source = diskPosition(disk, towerTop(from));
+
+        // get its destination rectangle
+        var destination = diskPosition(disk, towerTop(to));
+
+        disk.set({
+            x: [source.x, destination.x, destination.x],
+            y: [kB.y, kB.y, destination.y]
+        });
+
+        // push the disk onto the stack representing the destination tower
+        towers[to >> 1].push(disk);
+
+        // show the animation
+        yield ({
+            step: _.sprintf("Moving from %d to %d", from, to),
+            line: 'moveDisk'
+        });
+    }
+
+    // move all the disks from the left tower to the right tower
+    yield * hanoi(kN, kLEFT, kRIGHT);
+
+    //=done
+    yield ({
+        step: "The algorithm is complete.",
+        line: "done"
+    });
+
+    // ############################ Graphics Setup and Initialization ##############################
+
+
+    // get the width of the disk, which is based on the width of a tower.
+    // size is kN down to 1 (smallest)
+    function diskWidth(size) {
+        var w = t[0].box.w;
+        var u = w / (kN + 1);
+        return size * u;
+    }
+
+    // all disk are the same height, which is based on a single row of the tower grid
+    function diskHeight() {
+        return t[0].getBox(0, 0).h * 0.75;
+    }
+
+    // return the center position for top disk on the given tower ( kLEFT etc )
+    function towerTop(tower) {
+        var grid = t[tower >> 1];
+        var stack = towers[tower >> 1];
+        var base = grid.getBox(kN + 2, kC);
+        return {
+            x: base.cx,
+            y: base.y - (stack.length + 1) * diskHeight()
+
+        };
+    }
+    // takes a disk and a location ( as returned by tower top ) and returns the correct
+    // bounds for the disk
+    function diskPosition(disk, c) {
+        return new algo.layout.Box(c.x - disk.w / 2,
+            c.y,
+            disk.w,
+            disk.h);
+    }
+
+    // create a disk of the given size and position at top of left tower
+    function createDisk(size, color) {
+        var d = algo.render.Rectangle.create({
+            x: 0,
+            y: 0,
+            w: diskWidth(size),
+            h: diskHeight()-1,
+        }, 'gray', color, 1);
+        d.set({
+            shape: diskPosition(d, towerTop(kLEFT)),
+            cornerRadius: diskHeight() / 4
+        });
+        return d;
+    }
+
+    function setup() {
+
+        // render the base and body of each tower
+        var i;
+        for (i = 0; i < 3; i += 1) {
+
+            // base is the union of the cells on the bottom row
+            var b = t[i].getBox(kN + 2, 0).union(t[i].getBox(kN + 2, kW - 1));
+            algo.render.Rectangle.create(b, 'gray'+ 'whitesmoke', 1);
+
+            // body is the center column of the grid
+            b = t[i].getBox(2, kC).union(t[i].getBox(kN + 2 - 1, kC).inflate(0, -1));
+            algo.render.Rectangle.create(b, 'gray'+ 'whitesmoke', 1);
+
+        }
+
+        // create some colors for the disks
+        var colors = new algo.Color('palegreen').circularPalette(kN);
+
+        // create kN disks and push them onto the left tower
+        for (i = kN; i > 0; i--) towers[kLEFT >> 1].push(createDisk(i, colors[i-1]));
+    }
+
+}

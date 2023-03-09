@@ -1,0 +1,19 @@
+
+public class numMaxArreglo {
+public static void main(String[] args) {
+	 int arr[] = {12, 10, 30, 50, 100}; 
+	 System.out.print(metodo(arr,5));
+}
+
+private static int metodo(int[] a, int n) {
+	int x; 
+	  if(n == 1) 
+	    return a[0]; 
+	  else
+	    x = metodo(a, n-1); 
+	  if(x > a[n-1]) 
+	    return x; 
+	  else
+	    return a[n-1];
+}
+}

@@ -1,0 +1,18 @@
+
+public class BinarySearchMatrix {
+	public static void main(String[] args) {
+		int x=3;
+		int [][] arr= {{0,1,2},{3,4,5},{6,7,8},{9,10,11}}; 
+		
+		//COMO EL METODO FUE SOLICITADO TAL CUAL SE ESCRIBIO
+		//FUE NECESARIO CREAR UN OBJETO PARA PODER INVOCARLO
+		BinarySearchMatrix obj=new BinarySearchMatrix();
+		
+		obj.bidimensionalBinarySearch(arr, x);
+	}
+	
+	public void bidimensionalBinarySearch(int [][] arr, int x) {
+		System.out.print(arr[0].length);
+		
+	}
+}

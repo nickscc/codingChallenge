@@ -1,0 +1,32 @@
+
+public class StableSelectionSort {
+	public static void main(String[] args) {
+		int[]arreglo= {2,1,1,4};
+		int contador=0;
+		metodo(arreglo,contador);
+	}
+
+	private static void metodo(int[] arreglo,int contador) {
+		if(contador!=arreglo.length) {
+			int min=0;
+			int posicion=0;
+			for(int x=contador;x<arreglo.length;x++) {
+				if(arreglo[x]<min) {
+					min=arreglo[x];
+					posicion=x;
+				}
+			}
+			
+			do {
+				arreglo[posicion]=arreglo[posicion-1];
+				posicion--;
+			}while(posicion>0);
+			
+			metodo(arreglo,contador+1);
+			
+		}
+		
+
+	}
+
+}

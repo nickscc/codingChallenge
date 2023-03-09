@@ -1,0 +1,56 @@
+import java.util.Iterator;
+
+//public class EjemploIterador<E> implements Iterable<E>  CASO GENERICOS 
+public class EjemploIterador implements Iterable<Integer>{
+	
+	private int [] valores;
+	public EjemploIterador(int[] valores) {
+		this.valores=valores;
+	}
+
+	public Iterator<Integer> iterator() {
+		
+		return new Iterator<Integer>() {
+			private int pos=0;
+			private boolean callRemove=false; //CONTROL PARA QUE SOLO SE PUEDA MANDAR A LLAMAR SOLO DESPUES DE UN NEXT 
+
+			public boolean hasNext() {
+				return pos<valores.length;
+			}
+
+			public Integer next() {
+				this.callRemove=true;
+				return valores[pos++];
+			}
+			
+			public void remove() {
+				
+				if(this.callRemove) {
+					
+				}
+				this.callRemove=false;
+				
+			}
+			
+		};
+	}
+	
+	public static void main(String []args) {
+		int[]numeros= {1,2,3,4,5,6,7,8,9,10};
+		EjemploIterador ei=new EjemploIterador(numeros);
+		//FOR EACH
+		for(int valor:ei) {
+			System.out.println(valor);
+		}
+		System.out.println("****************");
+
+		//FORMA ANTIGUA
+		Iterator<Integer> it=ei.iterator();
+		while(it.hasNext()) {
+			System.out.println(it.next());
+		}
+		
+		
+	}
+
+}

@@ -1,0 +1,11 @@
+
+public class VerticePersona {
+	String nombre;
+	int amigos;
+	VerticePersona next;
+	
+	public VerticePersona(nombre) {
+		this.nombre=nombre;
+		
+	}
+}

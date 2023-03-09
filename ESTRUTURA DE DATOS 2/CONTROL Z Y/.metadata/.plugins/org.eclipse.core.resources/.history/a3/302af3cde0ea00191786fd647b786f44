@@ -1,0 +1,31 @@
+import java.util.Scanner;
+
+//CLASE LISTA ENLAZADA QUE SE COMPORTA COMO STACK 
+public class ControlYControlZ {
+	Node fin;
+	Node inicio;
+	String bloque;
+	ControlYControlZ lista_stack2=new ControlYControlZ();
+	
+	public ControlYControlZ() {
+		fin=null;
+		inicio=null;
+	}
+	
+	public ControlYControlZ(String[] arreglo) {
+		for(int x=0;x<arreglo.length;x++) {
+			insertarFin(arreglo[x]);
+		}
+	}
+
+
+	
+		
+	}
+	
+	
+	
+
+
+
+

@@ -1,0 +1,42 @@
+
+public class LinkedListQueue {
+	Nodo front;
+	Nodo rear;
+	
+	public LinkedListQueue() {
+		front=null;
+		rear=null;
+	}
+	
+	public Nodo front() {
+		return front;
+	}
+	
+	public Nodo rear() {
+		return rear;
+	}
+	
+	public void addQueue(String letra) {
+		Nodo nuevo=new Nodo(letra,null);
+		if(front==null) {
+			front=nuevo;
+			rear=nuevo;
+		}else {
+			nuevo.next=front;
+			rear=nuevo;
+		}
+	}
+	
+	public void deleteQueue() {
+		
+	}
+	
+	public static void main(String[] args) {
+		LinkedListQueue QL = new LinkedListQueue();
+		QL.addQueue("a");
+		QL.addQueue("b");
+		QL.addQueue("c");
+	}
+}
+
+

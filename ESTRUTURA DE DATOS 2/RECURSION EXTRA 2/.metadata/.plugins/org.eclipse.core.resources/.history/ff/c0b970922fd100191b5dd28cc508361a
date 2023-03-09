@@ -1,0 +1,19 @@
+//TE AN 12348
+//SE SEPARA EN 1+2+3+4
+//TE DA 10 
+//SE SEPARA 1+0
+//SUMA MAX==1
+public class SUMA_MAX {
+public static void main(String[] args) {
+	System.out.print(metodo("1234",3));
+}
+
+private static char[] metodo(String string, int i) {
+	String palabra=string;
+	for(int x=0;x<3;x++) {
+		palabra=palabra+palabra;
+	}
+	return null;
+}
+
+}

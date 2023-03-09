@@ -1,0 +1,123 @@
+Código:
+
+Nodo principal
+public class NodoCircular {
+
+ private Integer dato;
+private NodoCircular siguiente;
+}
+public class ListaCircular {
+       private NodoCircular inicio;
+      
+       public ListaCircular (){
+         inicio =null;
+       }
+
+
+Método Insertar al inicio
+
+public void InsertarInicio (Integer d){
+      
+       NodoCircular nuevo =new NodoCircular(d);
+         if(inicio==null){
+         inicio=nuevo;
+       }else{
+         NodoCircular aux=inicio;
+         while(aux.getSiguiente()!=inicio){
+                   aux=aux.getSiguiente();
+         }
+         aux.setSiguiente(nuevo);
+         nuevo.setSiguiente(inicio);
+        
+       }
+    
+}
+
+
+
+
+Método Insertar  Ordenado
+
+public void insertarOrdenado(Integer d){
+       NodoCircular nuevo=new NodoCircular(d);
+       if(inicio==null){
+         inicio=nuevo;
+       }
+       else{
+         NodoCircular aux=inicio;
+         NodoCircular ant=null;
+         while((aux.getSiguiente()!=inicio)&&(aux.getDato()<nuevo.getDato())){
+                   ant=aux;
+                   aux=aux.getSiguiente();
+         }if(ant==null){
+                   while(aux.getSiguiente()!=inicio){
+                            aux=aux.getSiguiente();
+                   }
+                   nuevo.setSiguiente(inicio);
+                   aux.setSiguiente(nuevo);
+                   inicio=nuevo;
+                   }else if(aux.getSiguiente()==inicio){
+                            ant=aux;
+                       ant.setSiguiente(nuevo);
+                       nuevo.setSiguiente(inicio);
+                   }else
+                   { ant.setSiguiente(nuevo);
+                     nuevo.setSiguiente(aux);
+                     }
+       }
+      
+}
+
+
+Método Imprimir
+
+public void Imprimir(){
+       System.out.println();
+       NodoCircular aux = inicio;
+       NodoCircular ant = null;
+       while(ant==null || ant.getSiguiente()!=inicio){
+         System.out.print(aux.getDato()+" ");
+         ant = aux;
+         aux = aux.getSiguiente();
+       }
+
+}
+
+
+Método Eliminar por valor
+public void eliminar(Integer d){
+       if(inicio!=null){
+         NodoCircular aux=inicio;
+         NodoCircular ant=null;
+         while((aux.getSiguiente()!=inicio)&&(aux.getDato()!=d)){
+                   ant=aux;
+                   aux=aux.getSiguiente();
+                  
+         }
+        
+         if(aux==inicio){
+                   System.out.println("No existe el elemento"); 
+                   return;
+         }
+         if(ant==null){
+             inicio=inicio.getSiguiente();
+             aux=null;
+             aux=inicio;
+
+             while(aux.getSiguiente()!=inicio){
+             ant=aux;
+                     aux=aux.getSiguiente();
+
+             }
+
+                   ant.setSiguiente(inicio);
+                  
+
+         }else{
+
+                   ant.setSiguiente(aux.getSiguiente());
+                   aux=null;
+        
+         }
+       }else{System.out.println("Lista Vacia");}
+}

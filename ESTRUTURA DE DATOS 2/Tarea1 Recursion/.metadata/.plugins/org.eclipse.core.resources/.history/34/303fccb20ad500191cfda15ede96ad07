@@ -1,0 +1,18 @@
+
+public class AsteriscosVersion4 {
+	public static void main(String []args) {
+		Rombo(4);
+	}
+
+	private static void Rombo(int i) {
+		if(i>0) {
+		while(i>=0) {
+			System.out.print("*");
+			i--;
+		}
+		Rombo(i-1);
+		System.out.println("");
+		Rombo(i-1);
+		}
+	}
+}

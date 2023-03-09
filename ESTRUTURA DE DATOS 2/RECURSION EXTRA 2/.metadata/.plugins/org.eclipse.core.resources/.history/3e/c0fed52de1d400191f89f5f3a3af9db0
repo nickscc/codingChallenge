@@ -1,0 +1,16 @@
+
+public class numeros {
+public static void main(String[] args) {
+	count(3);
+}
+
+private static void count(int n) {
+	// TODO Auto-generated method stub
+	static int d = 1;
+	System.out.print(" "+ n);
+	System.out.print(" "+ d);
+	d++;
+	if(n > 1) count(n-1);
+	System.out.print(" "+ d);
+}
+}

@@ -1,0 +1,19 @@
+
+public class Comparacion2Arreglos {
+public static void main(String[] args) {
+	int a1[]= {1,2,3};
+	int a2[]= {1,2,3};
+	System.out.print(metodo(a1,a2,a1.length-1));
+}
+
+private static boolean metodo(int[] a1, int[] a2, int i) {
+	if(a1.length==0&&a2.length==0)
+	return true;
+	else {
+		if(a1[1]==a2[i]) {
+			return metodo(a1,a2,i--);
+		}
+	}
+	return false;
+}
+}

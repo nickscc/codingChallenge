@@ -1,0 +1,10 @@
+
+public class ArrayHandler {
+	static char[] myName= {'N','I','C','O','L','E'};
+	
+	public static void main(String[] args) {
+		for(int x=0;x<myName.length;x++) {
+			System.out.print(myName[x]);
+		}
+	}
+}

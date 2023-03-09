@@ -1,0 +1,46 @@
+
+public class BinarySearchMatrix {
+	public static void main(String[] args) {
+		int x=11;
+		int [][] arr= {{0,1,2},{3,4,5},{6,7,8},{9,10,11}}; 
+
+		//COMO EL METODO FUE SOLICITADO TAL CUAL SE ESCRIBIO
+		//FUE NECESARIO CREAR UN OBJETO PARA PODER INVOCARLO
+		BinarySearchMatrix obj=new BinarySearchMatrix();
+
+		obj.bidimensionalBinarySearch(arr, x);
+	}
+
+	public void bidimensionalBinarySearch(int [][] arr, int x) {
+		int filas=arr.length-1;
+		int columnas=arr[0].length-1;
+		int min=0;
+		boolean caso=false;
+		do {
+			int avg_filas=(min+filas)/2;
+			int avg_columnas=(columnas)/2;
+			if(x==arr[avg_filas][avg_columnas]) {
+				System.out.print("VALOR ENCONTRADO EN: "+"fila: "+avg_filas+"columna: "+avg_columnas);
+				caso=true;
+			}else if(x>arr[avg_filas][avg_columnas]){ //CON ESTE PRIMERO CHECO LA FILA
+				for(int i=avg_columnas;i<=columnas;i++) {//CON ESTE PRIMERO CHECO LA COLUMNA, SI ESTA EN ESA COLUMNA O NO 
+					if(x==arr[avg_filas][i]) {
+						System.out.print("VALOR ENCONTRADO EN: "+"fila: "+avg_filas+"columna: "+i);
+						caso=true;
+					}
+				}
+				min=avg_filas-1;
+			}
+			else if(x<arr[avg_filas][avg_columnas]){
+				for(int i=avg_columnas;i>=0;i--) {
+					if(x==arr[avg_filas][i]) {
+						System.out.print("VALOR ENCONTRADO EN: "+"fila: "+avg_filas+"columna: "+i);
+						caso=true;
+					}
+				}
+				filas=avg_filas;
+			}
+		}while(caso==false);
+
+	}
+}

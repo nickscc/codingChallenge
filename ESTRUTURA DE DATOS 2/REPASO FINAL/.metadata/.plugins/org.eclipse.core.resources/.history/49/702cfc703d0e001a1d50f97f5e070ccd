@@ -1,0 +1,32 @@
+
+public class MergeListas {
+	
+	
+
+	public static Node mergeKLists(Node[] lists) {
+
+	}
+
+public static void main(String[] args) {
+	
+	LinkedListManager lista1=new LinkedListManager();
+	LinkedListManager lista2=new LinkedListManager();
+	LinkedListManager lista3=new LinkedListManager();
+	
+	Node test1=new Node(1);
+	Node test2=new Node(2);
+	Node test3=new Node(3);
+	Node test4=new Node(4);
+
+	LinkedListManager llMgr = new LinkedListManager();
+	llMgr.addNode(test1);
+	llMgr.addNode(test2);
+	llMgr.addNode(test3);
+	
+	Node[] objeto= {lista1,lista2,lista3};
+	
+}
+
+}
+
+

@@ -1,0 +1,19 @@
+
+public class reverseLines {
+public static void main(String[] args) {
+	String frase="C";
+	String reverse="";
+	System.out.print(metodo(frase.trim()));
+}
+
+private static String metodo(String frase) {
+	String reverse="";
+	if(frase.length()==0)
+	return reverse;
+	else {
+		reverse=frase.substring(frase.length()-1,frase.length());
+		frase=frase.substring(0,frase.length()-1);
+		return reverse+metodo(frase);
+	}
+}
+}

@@ -1,0 +1,23 @@
+
+public class ArrayHandler {
+	static char[] myName= {'N','I','C','O','L','E'};
+	static int[] numeros= {1,2,3,4,5};
+	
+	public static void main(String[] args) {
+		for(int x=0;x<myName.length;x++) {
+			System.out.print(myName[x]);
+		}
+		
+		int valor=0;
+		System.out.println(valor=metodo(numeros,numeros.length-1));
+	}
+	
+	public static int metodo(int numeros[],int posicion) {
+		if(posicion==0) {
+			return numeros[0];
+		}
+		
+		return numeros[posicion]+metodo(numeros,posicion-1);
+		
+	}
+}

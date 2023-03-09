@@ -1,0 +1,15 @@
+
+public class Rydle {
+public static void main(String[] args) {
+	System.out.print(metodo(5));
+}
+
+private static int metodo(int i) {
+	// TODO Auto-generated method stub
+	int result;
+	if(i==1)
+	return 1;
+	result=metodo(i-1);
+	return result;
+}
+}

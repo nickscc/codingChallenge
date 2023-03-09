@@ -1,0 +1,43 @@
+
+public class Bowling {
+	private static boolean turno;
+
+	public static void main(String[] args) {
+		String pines="IXXI"; //X ES QUE LO TIRASTE
+		int num_p=pines.length();
+		metodo(pines,num_p);
+	}
+
+	private static void metodo(String pines, int num_p) {
+		String[]arreglo=new String[pines.length()];
+		
+		//CONVIERTO EN ARREGLO PARA MANEJARLO MAS FACIL
+		for(int x=1;x<pines.length()-1;x++) {
+			arreglo[x]=pines.substring(x, x);
+		}
+		
+		for(int x=0;x<arreglo.length;x++) {
+			if(arreglo[x]=="I") {
+				arreglo[x]="X";
+				if(arreglo[x+1]=="I") {
+					x=x+1;
+					arreglo[x+1]="X";
+				}
+				turno=true;
+				pines="";
+				for(int y=0;y<pines.length();y++) {
+					pines=arreglo[y]+pines;
+				}
+				metodo(pines,num_p);
+			}
+		}
+		
+		if(num_p==0) {
+			if(turno==true) {
+				System.out.print("GANASTE");
+			}else {
+				System.out.print("PERDISTE");
+			}
+		}
+	}
+}

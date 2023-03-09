@@ -1,0 +1,37 @@
+
+public class MedianSortedArrays {
+	public static void main(String[] args) {
+		int [] nums1= {1,2};
+		int [] nums2= {3,4};
+		System.out.println(median(nums1,nums2));
+	}
+
+	public static int median(int[] nums1, int[] nums2) {
+		int l1 =nums1.length;
+		int l2 =nums2.length;
+		int[] arreglo=new int[l1+l2];
+		for(int x=0;x<arreglo.length-1;x++) {
+			if(x>nums1.length-1&&x>nums2.length-1) {
+			arreglo[x]=Math.min(nums1[x], nums2[x]);
+			}
+			if(x<nums1.length-1) {
+				arreglo[x]=nums1[x];
+			}
+			if(x<nums2.length-1) {
+				arreglo[x]=nums2[x];
+			}
+		}
+		
+		int tamanio=arreglo.length;
+		if(tamanio%2==0) {//es par
+			int avg=tamanio/2;
+			int x1=arreglo[avg];
+			int x2=arreglo[avg+1];
+			return (x1+x2)/2;
+		}else { //es impar
+			int avg=(tamanio+1)/2;
+			return avg;
+		}
+	
+	}
+}

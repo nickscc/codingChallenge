@@ -1,0 +1,79 @@
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+public class SortedLE<E> extends ListaEnlazada{
+	private List<E> a;
+	
+	public SortedLE() {
+		super();
+	}
+	
+	public SortedLE(E[] datos) { //Constructor a partir de un arreglo
+		a = new ArrayList<E>();
+		a=Arrays.asList(datos);
+	}
+	
+	private static <E extends Comparable<E>> void quicksort(E[] datos,int min, int max ) {
+		if(min<max) {
+			int p=particionar(datos,min,max);
+			quicksort(datos, min, p-1);
+			quicksort(datos, p+1, max);
+		}
+	}
+	private static <E extends Comparable<E>> int particionar(E[] datos,int min,int max) {
+		//Particionar la tabla y regresar en cuál posición quedó P
+		E p=datos[min];
+		int i=min+1;
+		for(int j=min+1;j<max;j++) {
+			if(datos[j].compareTo(p)<0) {
+				swap(datos,i,j);
+				i++;
+			}
+		}
+		swap(datos,i+1,max);
+		return i;
+	}
+	
+	private static <E> void swap(E[] datos,int i,int j) {
+		E tmp;
+		tmp=datos[i];
+		datos[i]=datos[j];
+		datos[j]=tmp;		
+	}
+	
+	
+	public static<E> void insert(int dato){
+		NodoLE nvo=new NodoLE(dato);
+		NodoLE temp=inicio;
+		NodoLE temp2;
+		if(inicio.getDato()<(dato)) {
+			temp=temp.getNext();
+			
+		}
+		temp2=temp.getNext();
+		temp.setNext(nvo);
+		nvo.setNext(temp2);
+		size++;
+	}
+	
+	public static void main(String[]args) {
+		
+		Integer[] arreglo= {10,20,2,0,100};
+		SortedLE<Integer> sorted =new SortedLE(arreglo);
+		quicksort(arreglo,0,arreglo.length-1);
+		for(int x=0;x<arreglo.length;x++) {
+			System.out.print(arreglo[x]+", ");
+		}
+		
+		
+		
+		
+		
+	}
+
+
+	
+}
+
+

@@ -1,0 +1,32 @@
+
+public class EvenWord {
+	public static void main(String[] args) {
+		EvenWord obj=new EvenWord();
+		System.out.print(obj.isEvenWord("ebbaacc"));
+	}
+	boolean isEvenWord(String word) {
+		String temporal="";
+		String palabra="";
+		int contador=0;
+
+		if(word.length()==0) {
+			return true;
+		}else {
+			if(word.length()>0) {
+				String letra=word.substring(0, 1);
+				//temporal=word.replaceAll(letra,"");
+				temporal=word.substring(1);
+				for(int x=1;x<word.length();x++) {
+					palabra=word.substring(x-1,x);
+					if(letra.equals(palabra)) {
+						contador++;
+					}
+				}
+				if(contador%2==0) {
+					return isEvenWord(temporal);
+				}
+			}
+		}
+		return false;
+	}
+}

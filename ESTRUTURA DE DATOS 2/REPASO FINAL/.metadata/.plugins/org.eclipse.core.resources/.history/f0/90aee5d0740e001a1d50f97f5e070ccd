@@ -1,0 +1,15 @@
+
+public class MedianSortedArrays {
+	public static void main(String[] args) {
+		int [] nums1= {1,3};
+		int [] nums2= {2};
+		System.out.println(median(nums1,nums2));
+	}
+
+	public static int median(int[] nums1, int[] nums2) {
+		int l1 =nums1.length;
+		int l2 =nums2.length;
+		int arreglo=new int[l1+l2];
+		return 0;
+	}
+}

@@ -1,0 +1,52 @@
+
+public class Stack {
+	LinkList stackZ;
+	LinkList stackY;
+	
+	public Stack(String[]arreglo) {
+		stackZ=new LinkList(arreglo);
+		stackY=new LinkList();
+	}
+	
+	public void controlZ() {
+		String bloque=stackZ.fin.palabra;
+		stackZ.fin=stackZ.fin.prev;
+		stackZ.fin.next=null;
+		stackY.insertarFin(bloque);
+	}
+	
+	public void controlY() {
+		String palabra=stackY.fin.palabra;
+		if(stackY.fin.next==null) {
+			stackY.fin=null;
+			stackZ.inicio=null;
+		}else {
+		stackY.fin=stackY.fin.prev;
+		stackY.fin.next=null;
+		stackZ.insertarFin(palabra);
+		}
+	}
+	
+	public static void main(String[] args) {
+		
+		String palabra="HOLA COMO ESTAS";
+		String arreglo[]=palabra.split(" ");
+		
+		Stack controlador=new Stack(arreglo);
+		
+		controlador.controlZ();
+		controlador.stackZ.printList();
+		System.out.println("--------------------------------");
+		controlador.controlZ();
+		controlador.stackZ.printList();
+		System.out.println("--------------------------------");
+		controlador.controlY();
+		controlador.stackZ.printList();
+		System.out.println("--------------------------------");
+		controlador.controlY();
+		controlador.stackZ.printList();
+		controlador.stackY.printList();
+		
+		
+	}
+}

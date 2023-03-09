@@ -1,0 +1,14 @@
+
+public class Bowling {
+	public static void main(String[] args) {
+		String pines="IXXI"; //X ES QUE LO TIRASTE
+		int num_p=pines.length();
+		metodo(pines,num_p);
+	}
+
+	private static void metodo(String pines, int num_p) {
+
+		int posicion=pines.indexOf("a");
+		System.out.println(posicion);
+	}
+}

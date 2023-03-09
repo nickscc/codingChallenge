@@ -1,0 +1,28 @@
+
+public class MinimumLoss {
+	public static void main(String[] args) {
+		int arreglo[]= {20,7,8,2,5};
+		metodo(arreglo,5);
+
+	}
+
+	private static void metodo(int[] arreglo, int i) {
+		int minimo=1000;
+		for(int x=0;x<i-1;x++) {
+			for (int y=x+1;y<i;y++) {
+				if(arreglo[x]>arreglo[y]) {
+				if(arreglo[x]-arreglo[y]<minimo) {
+					minimo=arreglo[x]-arreglo[y];
+				}
+				}else {
+					if(arreglo[y]-arreglo[x]<minimo) {
+						minimo=arreglo[y]-arreglo[x];
+					}
+					
+				}
+			}
+
+		}
+		System.out.print(minimo);
+	}
+}

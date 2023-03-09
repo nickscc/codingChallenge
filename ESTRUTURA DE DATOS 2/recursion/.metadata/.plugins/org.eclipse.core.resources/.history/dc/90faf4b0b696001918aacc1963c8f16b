@@ -1,0 +1,49 @@
+
+public class InvertirArreglo {
+	public static void main(String[]args) {
+		int[]arreglo= {1,2,3,4,5,6};
+		//metodo(arreglo,arreglo.length-1);
+		for(int x=0;x<arreglo.length;x++) {
+			System.out.print(arreglo[x]);
+		}
+		
+		System.out.println("");
+		metodo2(arreglo);
+		
+		for(int x=0;x<arreglo.length;x++) {
+			System.out.print(arreglo[x]);
+		}
+	}
+
+	//METODO DE PREPARACION PARA CREAR OTRO ARREGLO TEMPORAL E INVERTIR EL ORIGINAL 
+	private static void metodo2(int[] arreglo) {
+		int size=arreglo.length-1;
+		int temporal[]=new int[size];
+		
+		for(int x=0;x<size;x++) {
+			temporal[x]=arreglo[x];
+		}
+
+		invertir2(arreglo,temporal,size,0);
+
+	}
+
+	//METODO RECURSIVO QUE INVIERTE EL ORIGINAL 
+	private static void invertir2(int[] arreglo, int[] temporal, int size, int posicion) {
+		if(size>=0) {
+			arreglo[posicion]=temporal[size];
+			invertir2(arreglo, temporal, size-1, posicion+1);
+		}
+
+	}
+
+	//SOLO IMPRIME AL REVES
+	private static void metodo(int[] arreglo, int x) {
+		if(x>=0){
+
+			System.out.println(arreglo[x]);
+			metodo(arreglo,x-1);
+
+		}
+	}
+}

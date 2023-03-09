@@ -1,0 +1,21 @@
+import javax.swing.JOptionPane;
+
+public class SumaNumBinarios {
+public static void main(String[] args) {
+	int arreglo1[]= {1010};
+	int arreglo2[]= {1010};
+	suma(arreglo1,arreglo2);
+}
+
+private static void suma(int[] arreglo1, int[] arreglo2) {
+	int tamano=1;
+	if(arreglo1.length>arreglo2.length)){
+		tamano=arreglo1.length-1;
+	}
+	else {
+		tamano=arreglo2.length-1;
+	}
+	int arreglo3[]=new int(tamano);
+	
+}
+}

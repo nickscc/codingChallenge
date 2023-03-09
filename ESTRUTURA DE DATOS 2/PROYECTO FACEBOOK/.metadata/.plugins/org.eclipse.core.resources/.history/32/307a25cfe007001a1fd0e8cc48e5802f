@@ -1,0 +1,19 @@
+import java.util.LinkedList;
+
+public class GRAFO {
+	
+	int size;
+	
+	LinkedList<String> listaAdj[]; //ARREGLO DE LISTAS ENLAZADAS 
+	
+	public GRAFO(int size) {
+		this.size = size;
+		
+		listaAdj=new LinkedList[size];
+		
+		for(int x=0;x<size;x++) { //INICIALIZAMOS CADA OBJETO 
+			listaAdj[x]=new LinkedList<>();
+		}
+		
+	}
+}

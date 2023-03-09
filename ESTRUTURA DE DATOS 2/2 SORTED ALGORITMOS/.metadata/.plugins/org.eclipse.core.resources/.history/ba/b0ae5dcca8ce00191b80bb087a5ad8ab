@@ -1,0 +1,26 @@
+
+public class BubbleSort {
+	public static void main(String[] args) {
+		int arreglo[]= {2,1,6,4,0};
+		BubbleSort(arreglo,0);
+	}
+
+	
+	private static void BubbleSort(int[] arreglo, int n) {
+		if(n+1==arreglo.length-1) {
+			System.out.println("arreglo ordenado");
+		}
+		else {
+			for(int x=0;x<arreglo.length-1;x++) {
+				if(arreglo[x]>arreglo[x+1]) {
+					int temp=arreglo[x];
+					arreglo[x]=arreglo[x+1];
+					arreglo[x+1]=temp;
+				}
+			}
+			BubbleSort(arreglo,n+1);
+		}
+	}
+	
+	
+}

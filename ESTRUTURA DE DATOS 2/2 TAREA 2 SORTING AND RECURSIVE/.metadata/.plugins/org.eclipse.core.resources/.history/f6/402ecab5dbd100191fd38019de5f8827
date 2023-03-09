@@ -1,0 +1,22 @@
+
+public class EvenWord {
+	public static void main(String[] args) {
+		EvenWord obj=new EvenWord();
+		System.out.print(obj.isEvenWord("appeases"));
+	}
+	boolean isEvenWord(String word) {
+		if(word.length()==0) {
+			return true;
+		}
+		
+		String letra=word.substring(0, 1);
+		String temporal=word.replaceAll(letra,"");
+		
+		if(temporal.length()%2==0) {
+			isEvenWord(temporal);
+		}
+		
+		
+		return false;
+	}
+}

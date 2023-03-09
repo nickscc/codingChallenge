@@ -1,0 +1,39 @@
+//Given a binary tree, find the length of the longest path where each node in the path has the same value.
+//This path may or may not pass through the root.
+public class Tree_NumConse_Rec {
+	
+	public static void main(String[] args) throws Exception {
+		
+		root=insertNode(root,new BinaryTreeNode(20));
+		root=insertNode(root,new BinaryTreeNode(30));
+		root=insertNode(root,new BinaryTreeNode(8));
+		root=insertNode(root,new BinaryTreeNode(15));
+		root=insertNode(root,new BinaryTreeNode(2));
+	}
+	
+	public static BinaryTreeNode insertNode(BinaryTreeNode root,BinaryTreeNode node) {
+		if(root==null) {
+			root = node;
+			return root;
+		}else {
+			//GO LEFT
+			//IF THE VALUE IS SMALLER
+			if(node.value < root.value) {
+				root.left=insertNode(root.left,node);
+			}else if(node.value > root.value) {
+				//GO RIGHT
+				//IF THE VALUE IS BIGGER
+				root.right=insertNode(root.right,node);
+			}
+		}
+		return root;
+	}
+
+	public static void inorder(BinaryTreeNode root) {
+		if(root!=null) {
+			inorder(root.left);
+			System.out.print(root.value+",");
+			inorder(root.right);
+		}
+	}
+}

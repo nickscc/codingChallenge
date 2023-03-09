@@ -1,0 +1,27 @@
+
+public class MaximoComunDivisor {
+	
+	public static void main(String[]args) {
+		System.out.println(metodo(2,4));
+		System.out.println(metodo2(2,4));
+	}
+
+	private static int metodo(int x, int y) {//MAXIMO COMUNN DIVISOR
+		if(y==0)
+			return x;
+		
+		return metodo(y,x%y);
+		
+	}
+	private static int metodo2(int x, int y) { //MINIMO COMUN MULTIPLO
+	
+	int mcm=Math.max(x, y);
+
+while(mcm%x!=0||mcm%y!=0) {
+	mcm++;
+}
+		return mcm;
+		
+	}
+
+}

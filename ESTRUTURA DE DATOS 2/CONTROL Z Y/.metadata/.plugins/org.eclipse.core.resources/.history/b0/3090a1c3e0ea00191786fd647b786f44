@@ -1,0 +1,29 @@
+
+public class Stack {
+	LinkList stackZ;
+	LinkList stackY;
+	
+	public void controlZ() {
+		String bloque=stackZ.fin.palabra;
+		stackZ.fin=stackZ.fin.prev;
+		stackZ.fin.next=null;
+		stackY.insertarFin(bloque);
+	}
+	
+	public void controlY() {
+		String palabra=lista_stack2.fin.palabra;
+		this.lista_stack2.fin=lista_stack2.fin.prev;
+		this.lista_stack2.fin.next=null;
+		insertarFin(palabra);
+	}
+	
+	public static void main(String[] args) {
+		
+		String palabra="HOLA COMO ESTAS";
+		String arreglo[]=palabra.split(" ");
+		
+		Stack controlador=new Stack();
+		
+		
+	}
+}

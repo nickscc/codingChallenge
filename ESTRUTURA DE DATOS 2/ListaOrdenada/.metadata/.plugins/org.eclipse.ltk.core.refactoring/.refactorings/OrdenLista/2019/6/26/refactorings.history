@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename local variable &apos;datos&apos; in &apos;SortedLE.SortedLE(...)&apos; to &apos;arreglo&apos;&#x0D;&#x0A;- Original project: &apos;OrdenLista&apos;&#x0D;&#x0A;- Original element: &apos;SortedLE.SortedLE(E[]).datos&apos;&#x0D;&#x0A;- Renamed element: &apos;datos&apos;&#x0D;&#x0A;- Update references to refactored element" description="Rename local variable &apos;datos&apos;" id="org.eclipse.jdt.ui.rename.local.variable" input="/src&lt;{SortedLE.java[SortedLE~SortedLE~\[QE;@datos!212!220!216!220!\[QE;!0!true" name="arreglo" references="true" stamp="1561860954631" version="1.0"/>
+</session>

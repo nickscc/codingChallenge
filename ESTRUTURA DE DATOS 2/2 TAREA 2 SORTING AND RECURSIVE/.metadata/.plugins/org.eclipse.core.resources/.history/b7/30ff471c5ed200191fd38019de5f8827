@@ -1,0 +1,56 @@
+
+public class MergeSort {
+public static void main(String[] args) {
+	int datos[]= {1,5,2};
+	long start = System.nanoTime();
+	mergesort(datos,0,datos.length-1);
+	for(int x=0;x<datos.length;x++) {
+		System.out.print(datos[x]);
+	}
+	System.out.println("");
+	long finish = System.nanoTime();
+	long timeElapsed = finish - start;
+	
+	
+	System.out.println("Tiempo de ejecución en nanosegundos: " + timeElapsed);
+}
+
+private static void mergesort(int[] datos,int p,int r) {
+	
+	if(p<r) {
+		int q=((p+r)/2);
+		mergesort(datos,p,q);
+		mergesort(datos,q+1,r);
+		merge(datos,p,q,r);
+	}
+}
+
+private static void merge(int[] datos, int p, int q, int r) {
+	int n1=q-p+1;
+	int n2=r-q;
+	int L[]=new int[n1+1];
+	int R[]=new int[n2+1];
+	for(int i=1;i<n1;i++) {
+		L[i]=datos[p+i-1];
+	}
+	for(int j=1;j<n2;j++) {
+		R[j]=datos[q+j];
+	}
+	//L[n1]=100; //100 SON NUESTROS CENTINELAS
+	//R[n2]=100;
+	
+	int i=1;
+	int j=1;
+	
+	for(int k=p;k<r;k++) {
+		if(L[i]<=R[j]) {
+			datos[k]=L[i];
+			i=i+1;
+		}else {
+			datos[k]=R[j];
+			j=j+1;
+		}
+	}
+	
+}	
+}

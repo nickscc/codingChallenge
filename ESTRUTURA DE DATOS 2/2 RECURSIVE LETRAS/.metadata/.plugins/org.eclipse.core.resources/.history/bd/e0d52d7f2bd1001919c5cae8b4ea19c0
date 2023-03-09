@@ -1,0 +1,15 @@
+
+public class LetrasRecursive {
+	public static void main(String[] args) {
+		String palabra1="abcd";
+		String palabra2="wxyz";
+		String palabra3="abcdwxyz";
+		metodo(palabra1,palabra2,palabra3);
+	}
+
+	private static void metodo(String palabra1, String palabra2, String palabra3) {
+		
+		
+		
+	}
+}

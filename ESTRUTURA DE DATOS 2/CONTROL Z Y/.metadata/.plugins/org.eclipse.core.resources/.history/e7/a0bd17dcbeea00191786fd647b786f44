@@ -1,0 +1,80 @@
+import java.util.Scanner;
+
+//CLASE LISTA ENLAZADA QUE SE COMPORTA COMO STACK 
+public class ControlYControlZ {
+	Node fin;
+	Node inicio;
+	String bloque;
+	static ControlYControlZ lista_stack2=new ControlYControlZ();
+	
+	public ControlYControlZ() {
+		fin=null;
+		inicio=null;
+	}
+	
+	public ControlYControlZ(String[] arreglo) {
+		for(int x=0;x<arreglo.length;x++) {
+			insertarFin(arreglo[x]);
+		}
+	}
+
+
+	private void insertarFin(String palabra) {
+		Node nuevo=new Node(palabra);
+		Node current=inicio;
+		
+		if(inicio==null) {
+			inicio=nuevo;
+			fin=nuevo;
+		}else {
+			while(current.next!=null) {
+				current=current.next;
+			}
+			current.next=nuevo;
+			fin=nuevo;
+			fin.prev=current;
+		}
+		
+	}
+	
+	public void controlZ() {
+		String bloque=fin.palabra;
+		fin=fin.prev;
+		fin.next=null;
+		lista_stack2.insertarFin(bloque);
+	}
+	
+	public void controlY() {
+		String palabra=lista_stack2.fin.palabra;
+		lista_stack2.fin=lista_stack2.fin.prev;
+		lista_stack2.fin.next=null;
+		insertarFin(palabra);
+	}
+	public void printList() {
+		System.out.println("--------------------------------------------");
+		Node tmp=inicio;
+		while (tmp!=null) {
+			System.out.println(tmp.palabra);
+			tmp=tmp.next;
+		}
+	}
+
+
+
+
+	public static void main(String[] args) {
+		//Scanner entrada=new Scanner(System.in);
+		//System.out.println("INTRODUCE TU TEXTO");
+		//String palabra=entrada.nextLine();
+		String palabra="HOLA COMO ESTAS";
+		String arreglo[]=palabra.split(" ");
+		
+		ControlYControlZ lista_stack1=new ControlYControlZ(arreglo);
+		lista_stack1.controlZ();
+		lista_stack1.printList();
+	//	lista_stack1.controlY();
+		lista_stack1.printList();
+	}
+}
+
+

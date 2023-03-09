@@ -1,0 +1,13 @@
+
+public class multiplicacion {
+	public static void main(String[] args) {
+		System.out.print(metodo(2,3));
+	}
+
+	private static int metodo(int a, int b) {
+		if(b==0)
+			return 0;
+		else
+			return a+metodo(a,b-1);
+	}
+}

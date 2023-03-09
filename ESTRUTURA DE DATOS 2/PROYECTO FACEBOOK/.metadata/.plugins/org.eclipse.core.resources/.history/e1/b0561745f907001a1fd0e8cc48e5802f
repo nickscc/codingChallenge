@@ -1,0 +1,15 @@
+
+public class Facebook {
+	public static void main(String[] args) {
+		GrafoFacebook g = new GrafoFacebook();
+		VerticePersona v1 = new VerticePersona("JCP");
+		VerticePersona v2 = new VerticePersona("ABC");
+		g.addVertix(v1);
+		g.addVertix(v2);
+		
+		g.addConnection(v1.ID, v2);
+		
+		System.out.println(g.myGraph.get(0).name );
+		System.out.println(g.myGraph.get(0).next.name);
+	}
+}

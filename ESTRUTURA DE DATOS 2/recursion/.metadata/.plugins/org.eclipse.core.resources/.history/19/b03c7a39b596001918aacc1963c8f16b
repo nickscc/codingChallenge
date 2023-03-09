@@ -1,0 +1,17 @@
+
+public class InvertirArreglo {
+	public static void main(String[]args) {
+		int[]arreglo= {1,2,3,4,5,6};
+		metodo(arreglo,arreglo.length-1);
+	}
+
+	private static void metodo(int[] arreglo, int x) {
+		if(x==0)
+			System.out.println(arreglo[x]);
+		
+		
+		metodo(arreglo,x-1);
+		System.out.println(arreglo[x]);
+		
+	}
+}
