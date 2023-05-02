@@ -1,1 +1,8 @@
 https://www.geeksforgeeks.org/construct-tree-from-given-inorder-and-preorder-traversal/
+
+Let us consider the below traversals:
+
+Inorder sequence: D B E A F C 
+Preorder sequence: A B D E C F
+
+Construct Tree from Inorder & Preorder
